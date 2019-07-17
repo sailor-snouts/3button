@@ -5,22 +5,22 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
 
-    public float seconds;
-
-    private float targetTime;
+    public float seconds = 300;
+    
+    private bool hasEnded = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        targetTime = Time.timeSinceLevelLoad + seconds;
-        Debug.Log(targetTime + " Is Target Time");
+        Debug.Log(seconds + " Is Target Time");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Time.timeSinceLevelLoad >= targetTime) {
+        if(Time.timeSinceLevelLoad >= seconds && !hasEnded) {
             Debug.Log("Quitting!");
+            hasEnded = true;
         }
     }
 }
