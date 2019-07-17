@@ -4,10 +4,22 @@ using UnityEngine;
 
 public class MeterController : MonoBehaviour
 {
+    [SerializeField]
     private float current;
+
+    [SerializeField]
     private float target;
+
+    [SerializeField]
+    private float tolerance;
+
+    [SerializeField]
     private float button1;
+
+    [SerializeField]
     private float button2;
+
+    [SerializeField]
     private float button3;
 
     void Update()
@@ -26,5 +38,23 @@ public class MeterController : MonoBehaviour
         }
     }
 
+    public bool IsStable()
+    {
+        return Mathf.Abs(this.current - this.target) <= this.tolerance;
+    }
 
+    public float GetCurrent()
+    {
+        return this.current;
+    }
+
+    public float GetTarget()
+    {
+        return this.target;
+    }
+
+    public void SetTarget(float target)
+    {
+        this.target = target;
+    }
 }
