@@ -8,6 +8,9 @@ public class Splash : MonoBehaviour
 {
     private VideoPlayer splash;
 
+    [SerializeField]
+    private string nextScene = "Main";
+
     void Start()
     {
         splash = GetComponent<VideoPlayer>();
@@ -20,6 +23,6 @@ public class Splash : MonoBehaviour
 
     void EndReached(VideoPlayer vplayer) 
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene(this.nextScene);
     }    
 }
