@@ -38,4 +38,9 @@ public class Drainage : MonoBehaviour
     {
         this.isDraining = false;
     }
+
+    public float GetFill()
+    {
+        return this.fill;
+    }
 }

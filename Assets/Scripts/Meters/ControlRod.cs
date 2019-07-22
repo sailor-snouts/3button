@@ -34,4 +34,9 @@ public class ControlRod : MonoBehaviour
     {
         this.direction = 0f;
     }
+
+    public float GetFill()
+    {
+        return this.fill;
+    }
 }

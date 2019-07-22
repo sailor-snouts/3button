@@ -6,6 +6,7 @@ using System;
 public class Score : MonoBehaviour
 {
     private float score = 0;
+    private bool isCounting;
 
     private void Start()
     {
@@ -14,7 +15,7 @@ public class Score : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
-        if (level == 1)
+        if (level == 2)
         {
             this.score = 0;
         }
@@ -22,7 +23,17 @@ public class Score : MonoBehaviour
 
     void Update()
     {
+        if(!this.isCounting)
+        {
+            return;
+        }
+
         this.score += Time.deltaTime;
+    }
+
+    public void StopCounting()
+    {
+        this.isCounting = false;
     }
 
     public int GetValue()
