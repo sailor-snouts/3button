@@ -9,9 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Splash.unity
     guid: 6199f74530dc5406cad9573f3ac6cd38
   - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: 026867011150c1942a72b6f1b3b48f33
+  - enabled: 1
     path: Assets/Scenes/Main.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    guid: ae24fe9bf46b2924d9b031b1c7432ece
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 160f813a6d06b7344a864a14c8667d63
+  - enabled: 1
+    path: Assets/Scenes/Score.unity
+    guid: 4fb943dff0ea0f74ea1a836ffae105cf
+  - enabled: 0
+    path: Assets/__DELETED_GUID_Trash/2cda990e2423bbf4892e6590ba056729
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
