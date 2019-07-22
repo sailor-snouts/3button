@@ -5,24 +5,32 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private Drainage drainage;
-    private ControlRod controlRod;
+    private ControlRodDepth controlRodDepth;
+    private ControlRodTemperature controlRodTemp;
     private WaterPump waterPump;
+    private CoreTemp coreTemp;
+    private EnergyOutput energyOutput;
     private SceneChange sceneChange;
     private Score score;
 
     private void Start()
     {
         this.drainage = FindObjectOfType<Drainage>();
-        this.controlRod = FindObjectOfType<ControlRod>();
+        this.controlRodDepth = FindObjectOfType<ControlRodDepth>();
+        this.controlRodTemp = FindObjectOfType<ControlRodTemperature>();
         this.waterPump = FindObjectOfType<WaterPump>();
-        this.sceneChange = FindObjectOfType<SceneChange>();
+        this.coreTemp = FindObjectOfType<CoreTemp>();
+        this.energyOutput = FindObjectOfType<EnergyOutput>();
         this.score = FindObjectOfType<Score>();
+        this.sceneChange = FindObjectOfType<SceneChange>();
     }
 
     private void Update()
     {
-        float power = this.controlRod.GetFill() + (100f - this.drainage.GetFill());
-        float stability = this.drainage.GetFill(); // @TODO + core temp
+        float power = this.controlRodDepth.GetFill() + (100f - this.drainage.GetFill());
+        float stability = this.drainage.GetFill() + this.controlRodTemp.GetFill();
+        this.coreTemp.SetTemp(0);
+        this.energyOutput.SetEnergy(0f);
 
         if(power > 95f || stability > 95f)
         {

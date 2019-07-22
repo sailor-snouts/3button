@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControlRod : MonoBehaviour
+public class ControlRodTemperature : MonoBehaviour
 {
     [SerializeField]
     private Transform mask;

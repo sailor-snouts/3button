@@ -6,34 +6,24 @@ using System;
 public class CoreTemp : MonoBehaviour
 {
     [SerializeField]
-    public GameObject needle;
-    [SerializeField]
-    private Transform needleTargetPos;
+    private GameObject needle;
+    
+    private float guage;
 
-    private float gauge = 0f;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        this.SetTemp(0f);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetTemp(float percent) 
     {
-        float angle = gauge;
-        Quaternion q = Quaternion.AngleAxis (angle, Vector3.forward);
-        needle.transform.localRotation = q;
-        needle.transform.position = new Vector3(needleTargetPos.position.x- 0.092f, needleTargetPos.position.y + 0.849f, 0);        
-
-        // For Testing
-        if(Time.timeSinceLevelLoad % 1 == 0) {gauge = gauge + 1f;}
+        this.guage = Mathf.Clamp(percent, 0, 100f);
+        float angle = (this.guage - 50f) * (80f / 50f) * -1;
+        this.needle.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    public void setTemp(float percent) 
-        {
-        if(percent > 100f) {percent = 100f;}
-        if(percent <= 0f) { percent = 0f;}
-        gauge = percent;
-        }
+    public float GetValue()
+    {
+        return this.guage;
+    }
 }

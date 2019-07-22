@@ -5,14 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class Arrows : MonoBehaviour
 {
-    private ControlRod controlRod;
+    private ControlRodDepth controlRod;
     private Animator anim;
     private bool isArrowUp = false;
     private bool isArrowDown = false;
 
     private void Start()
     {
-        this.controlRod = FindObjectOfType<ControlRod>();
+        this.controlRod = FindObjectOfType<ControlRodDepth>();
         this.anim = GetComponent<Animator>();
         this.anim.SetBool("IsArrowUp", this.isArrowUp);
         this.anim.SetBool("IsArrowDown", this.isArrowDown);
