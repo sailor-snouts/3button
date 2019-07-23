@@ -5,14 +5,16 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class Arrows : MonoBehaviour
 {
-    private ControlRodDepth controlRod;
+    private ControlRodDepth controlRodDepth;
+    private ControlRodTemperature controlRodTemp;
     private Animator anim;
     private bool isArrowUp = false;
     private bool isArrowDown = false;
 
     private void Start()
     {
-        this.controlRod = FindObjectOfType<ControlRodDepth>();
+        this.controlRodDepth = FindObjectOfType<ControlRodDepth>();
+        this.controlRodTemp = FindObjectOfType<ControlRodTemperature>();
         this.anim = GetComponent<Animator>();
         this.anim.SetBool("IsArrowUp", this.isArrowUp);
         this.anim.SetBool("IsArrowDown", this.isArrowDown);
@@ -24,19 +26,29 @@ public class Arrows : MonoBehaviour
         {
             this.isArrowUp = true;
             this.isArrowDown = false;
-            this.controlRod.IncreaseDepth();
+            this.controlRodDepth.IncreaseDepth();
+            this.controlRodTemp.IncreaseTemp();
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
             this.isArrowUp = false;
             this.isArrowDown = true;
-            this.controlRod.DecreaseDepth();
+            this.controlRodDepth.DecreaseDepth();
+            this.controlRodTemp.DecreaseTemp();
         }
         else
         {
             this.isArrowUp = false;
             this.isArrowDown = false;
-            this.controlRod.PauseDepth();
+            this.controlRodDepth.PauseDepth();
+            if(this.controlRodDepth.GetDepth() > 50f || this.controlRodDepth.GetDepth() < 20f)
+            {
+                this.controlRodTemp.IncreaseTemp();
+            }
+            else
+            {
+                this.controlRodTemp.DecreaseTemp();
+            }
         }
 
         this.anim.SetBool("IsArrowUp", this.isArrowUp);

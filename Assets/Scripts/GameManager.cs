@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     private CoreTemp coreTemp;
     private EnergyOutput energyOutput;
     private SceneChange sceneChange;
-    private Score score;
 
     private void Start()
     {
@@ -21,22 +20,18 @@ public class GameManager : MonoBehaviour
         this.waterPump = FindObjectOfType<WaterPump>();
         this.coreTemp = FindObjectOfType<CoreTemp>();
         this.energyOutput = FindObjectOfType<EnergyOutput>();
-        this.score = FindObjectOfType<Score>();
         this.sceneChange = FindObjectOfType<SceneChange>();
     }
 
     private void Update()
     {
-        float power = this.controlRodDepth.GetFill() + (100f - this.drainage.GetFill());
+        float power = this.controlRodDepth.GetDepth() * 0.2f + (100f - this.drainage.GetFill()) * 0.8f;
         float stability = this.drainage.GetFill() + this.controlRodTemp.GetFill();
-        this.coreTemp.SetTemp(0);
-        this.energyOutput.SetEnergy(0f);
+        this.energyOutput.SetEnergy(power);
 
-        if(power > 95f || stability > 95f)
+        if(power > 90f || power < 10f)
         {
-            this.score.StopCounting();
-            Debug.Log("Game Over");
-            //this.sceneChange.FadeToLevel("GameOver");
+            this.sceneChange.FadeToLevel("GameOver");
         }
     }
 }
